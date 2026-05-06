@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 export default function Index({ transactions }) {
     return (
@@ -16,7 +16,14 @@ export default function Index({ transactions }) {
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-6">
                         <h3 className="mb-4 text-lg font-medium">Riwayat Keuangan</h3>
-                        
+                        {/*LINK TO CREATE TRANSACTION+ */}
+                        <Link
+                            href={route('transactions.create')}
+                            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-bold shadow-sm"
+                        >
+                            + Tambah Transaksi
+                        </Link>
+
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
                                 <thead>

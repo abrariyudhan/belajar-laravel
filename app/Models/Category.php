@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Category extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id', 
-        'category_id', // Pastikan ini ada jika migrasi sudah diubah ke foreignID
-        'amount', 
+        'name', 
         'type', 
-        'description', 
-        'date'
+        'color'
     ];
 
     // Relasi ke User
@@ -24,9 +22,9 @@ class Transaction extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Relasi ke Category (INI YANG PENTING)
-    public function category()
+    // Relasi ke Transaction
+    public function transactions()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Transaction::class);
     }
 }

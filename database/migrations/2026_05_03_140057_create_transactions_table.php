@@ -9,27 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+ public function up(): void
 {
     Schema::create('transactions', function (Blueprint $table) {
         $table->id();
-        
-        // 1. Relasi ke User (Penting untuk CMS agar data tidak tertukar)
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
         
-        // 2. Nominal Uang (Precision 15, Scale 2 untuk akurasi)
+        // UBAH BAGIAN INI:
+        // Kita hubungkan ke tabel categories, bukan string biasa lagi
+        $table->foreignId('category_id')->constrained()->onDelete('cascade');
+        
         $table->decimal('amount', 15, 2);
-        
-        // 3. Tipe Transaksi (Pemasukan atau Pengeluaran)
         $table->enum('type', ['income', 'expense']);
-        
-        // 4. Kategori & Deskripsi
-        $table->string('category'); 
-        $table->string('description')->nullable(); // nullable agar catatan tidak wajib diisi
-        
-        // 5. Waktu Transaksi
+        $table->string('description')->nullable();
         $table->date('date');
-        $table->timestamps(); // Menghasilkan created_at & updated_at
+        $table->timestamps();
     });
 }
 
