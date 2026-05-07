@@ -10,17 +10,10 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 
         'name', 
         'type', 
         'color'
     ];
-
-    // Relasi ke User
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     // Relasi ke Transaction
     public function transactions()

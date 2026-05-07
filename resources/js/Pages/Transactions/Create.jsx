@@ -37,16 +37,18 @@ export default function Create({ categories }) {
                             </div>
 
                             {/* Select Kategori */}
+                            {/* Select Kategori */}
                             <div>
                                 <label className="block text-sm font-medium">Kategori</label>
-                                <select 
-                                    value={data.category_id} 
+                                <select
+                                    value={data.category_id}
                                     onChange={e => setData('category_id', e.target.value)}
                                     className="w-full rounded-md border-gray-300"
                                 >
                                     <option value="">Pilih Kategori</option>
+                                    {/* Render kategori yang sudah ada dari database */}
                                     {categories.map(cat => (
-                                        <option key={cat.id} value={cat.id}>{cat.name} ({cat.type})</option>
+                                        <option key={cat.id} value={cat.id}>{cat.name}</option>
                                     ))}
                                 </select>
                                 {errors.category_id && <div className="text-red-500 text-sm">{errors.category_id}</div>}
